@@ -1,0 +1,8 @@
+extends ../intercessor-layout
+
+block content
+  .readable
+    #render-text
+
+block scripts
+  script window.staticPath = !{JSON.stringify(app.paths.static)};
