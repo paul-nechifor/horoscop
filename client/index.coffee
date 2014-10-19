@@ -13,6 +13,7 @@ main = ->
 class Page
   constructor: (@lines) ->
     @renderText = $ '#render-text'
+    @dateControls = $ '#date-controls'
     @signs = [
       ['♈', 'berbec', 'Berbec']
       ['♉', 'taur', 'Taur']
@@ -28,20 +29,53 @@ class Page
       ['♓', 'pesti', 'Pești']
       ['∞', 'toate', 'Toate']
     ]
+    @months = [
+      'ianuarie'
+      'februarie'
+      'martie'
+      'aprilie'
+      'mai'
+      'iunie'
+      'iulie'
+      'august'
+      'septembrie'
+      'octombrie'
+      'noiembrie'
+      'decembrie'
+    ]
 
   setup: ->
     @renderDay '2014-04-10'
 
   renderDay: (day) ->
+    @renderDateControls day
     @renderText.empty()
     for i in [0 .. 11]
       @makeSign day, i
       .appendTo @renderText
     return
 
+  renderDateControls: (day) ->
+    date = @getDate day
+    stamp = date.getTime()
+    inDay = 1000 * 60 * 60 * 24
+    @setHref @dateControls.find('.prev a'), stamp - inDay, '◃ ', ''
+    @setHref @dateControls.find('.next a'), stamp + inDay, '', ' ▹'
+    @setHref @dateControls.find('.curr a'), stamp, '', ''
+
+  setHref: (a, stamp, before, after) ->
+    d = new Date stamp
+    a.attr 'href', "#{d.getFullYear()}-#{d.getMonth()}-#{d.getDate()}"
+    .text "#{before}#{d.getDate()} #{@months[d.getMonth()]} #{d.getFullYear()}#{after}"
+
+  getDate: (day) ->
+    p = day.split('-').map (x) -> Number x
+    new Date p[0], p[1], p[2]
+
   makeSign: (day, i) ->
     ret = $ '<div class="sign"/>'
-    @makeBubble '#', @signs[i][0], @signs[i][2]
+    .attr 'id', @signs[i][1]
+    @makeBubble '#' + @signs[i][1], @signs[i][0], @signs[i][2]
     .appendTo ret
     $ '<p class="text"/>'
     .text @getText day + '/' + i
