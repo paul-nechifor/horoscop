@@ -9,4 +9,6 @@ block content
     #render-text
 
 block scripts
-  script window.staticPath = !{JSON.stringify(app.paths.static)};
+  script
+    | window.staticPath = !{JSON.stringify(app.paths.static)};
+    | window.rootPath = !{JSON.stringify(app.root)};

@@ -4,4 +4,5 @@ module.exports =
   lang: 'ro'
   routes: [
     ['get', '/', 'index']
+    ['get', '/:date', 'index']
   ]

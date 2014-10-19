@@ -12,6 +12,8 @@ main = ->
 
 class Page
   constructor: (@lines) ->
+    @day = window.location.pathname.substring window.rootPath.length
+    @day = new Date().toISOString().substring(0, 10) unless @day
     @renderText = $ '#render-text'
     @dateControls = $ '#date-controls'
     @signs = [
@@ -45,7 +47,7 @@ class Page
     ]
 
   setup: ->
-    @renderDay '2014-04-10'
+    @renderDay @day
 
   renderDay: (day) ->
     @renderDateControls day
@@ -59,18 +61,22 @@ class Page
     date = @getDate day
     stamp = date.getTime()
     inDay = 1000 * 60 * 60 * 24
-    @setHref @dateControls.find('.prev a'), stamp - inDay, '◃ ', ''
-    @setHref @dateControls.find('.next a'), stamp + inDay, '', ' ▹'
-    @setHref @dateControls.find('.curr a'), stamp, '', ''
+    @setHref @dateControls.find('.prev a'), stamp - inDay, '◃ ', '', true
+    @setHref @dateControls.find('.next a'), stamp + inDay, '', ' ▹', true
+    @setHref @dateControls.find('.curr a'), stamp, '', ' ' + date.getFullYear()
 
-  setHref: (a, stamp, before, after) ->
+
+  setHref: (a, stamp, before, after, shortMonth) ->
+    p = (x) -> if x < 10 then '0' + x else x
     d = new Date stamp
-    a.attr 'href', "#{d.getFullYear()}-#{d.getMonth()}-#{d.getDate()}"
-    .text "#{before}#{d.getDate()} #{@months[d.getMonth()]} #{d.getFullYear()}#{after}"
+    month = @months[d.getMonth()]
+    month = month.substring(0, 3) + '.' if shortMonth
+    a.attr 'href', "#{p d.getFullYear()}-#{p d.getMonth() + 1}-#{p d.getDate()}"
+    .text "#{before}#{d.getDate()} #{month}#{after}"
 
   getDate: (day) ->
     p = day.split('-').map (x) -> Number x
-    new Date p[0], p[1], p[2]
+    new Date p[0], p[1] - 1, p[2]
 
   makeSign: (day, i) ->
     ret = $ '<div class="sign"/>'
