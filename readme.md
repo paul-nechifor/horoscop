@@ -2,6 +2,8 @@
 
 Plausible fake horoscope generator in Romanian.
 
+![Cover of Horoscop.](screenshot.png)
+
 ## Usage
 
 Install the dependencies:
