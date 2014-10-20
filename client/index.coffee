@@ -71,7 +71,8 @@ class Page
     d = new Date stamp
     month = @months[d.getMonth()]
     month = month.substring(0, 3) + '.' if shortMonth
-    a.attr 'href', "#{p d.getFullYear()}-#{p d.getMonth() + 1}-#{p d.getDate()}"
+    code = "#{p d.getFullYear()}-#{p d.getMonth() + 1}-#{p d.getDate()}"
+    a.attr 'href', window.rootPath + code
     .text "#{before}#{d.getDate()} #{month}#{after}"
 
   getDate: (day) ->
