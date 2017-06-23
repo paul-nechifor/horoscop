@@ -6,16 +6,12 @@ Plausible fake horoscope generator in Romanian. [See it live.][live]
 
 ## Usage
 
-Clone this repo. Build and run it by typing:
+Start the server and watch for changes:
 
-    npm run up
-
-Go to [localhost:3000](http://localhost:3000) to see it. See other [supported
-commands][sc].
+    npm start
 
 ## License
 
-MIT
+ISC
 
 [live]: http://nechifor.net/horoscop
-[sc]: https://github.com/paul-nechifor/intercessor#supported-commands
