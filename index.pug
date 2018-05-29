@@ -4,7 +4,7 @@ html(lang='ro')
     meta(charset='utf-8')
     meta(http-equiv='x-ua-compatible', content='ie=edge')
     title Horoscop
-    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='viewport', content='width=device-width,initial-scale=1')
     link(rel='apple-touch-icon', href='/favicon152.png')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700|Open+Sans+Condensed:300,300italic,700&subset=latin,latin-ext')
     link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
@@ -49,23 +49,26 @@ html(lang='ro')
       header
         margin 0 0 25px 0
 
-      footer
-        margin-top 45px
-        padding-bottom 10px
-        text-align center
+      .footer
         font-size 16px
-        padding-top 10px
+        margin-top 45px
+        padding 1em 0
+        text-align center
+        small
+          color #999
+          a
+            color #888
 
       /* Devices with big screens. */
       @media only screen and (min-width: 768px)
-        header, .readable, footer
+        header, .readable, .footer
           width 600px
           margin-left auto
           margin-right auto
 
       /* Devices with medium screens */
       @media only screen and (min-width: 480px) and (max-width: 767px)
-        header, .readable, footer
+        header, .readable, .footer
           max-width 600px
           padding 0 10px
           margin-left auto
@@ -73,7 +76,7 @@ html(lang='ro')
 
       /* Devices with small screens */
       @media only screen and (max-width: 479px)
-        header, .readable, footer
+        header, .readable, .footer
           padding 0 8px
 
         body, label
@@ -87,7 +90,7 @@ html(lang='ro')
 
         header
           margin 0 0 5px 0
-        footer
+        .footer
           font-size 14px
       #date-controls
         position relative
@@ -151,8 +154,15 @@ html(lang='ro')
       #render-text
     // googleon: all
 
-    footer
-      p.text-center Creat de <a href='/'>Paul Nechifor</a>.
+    .footer
+      :markdown-it
+        Creat de [Paul Nechifor](/). [Vezi sursa Git.](https://github.com/paul-nechifor/horoscop)
+
+      small: :markdown-it
+        [Prima pagină](/) •
+        [Blog](/blog) •
+        [Proiecte](/projects) •
+        [Twitter](https://twitter.com/PaulNechifor)
 
     script(src='//code.jquery.com/jquery-1.10.2.min.js')
     script(src='//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js')

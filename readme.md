@@ -6,9 +6,17 @@ Plausible fake horoscope generator in Romanian. [See it live.][live]
 
 ## Usage
 
+Install:
+
+    yarn
+
 Start the server and watch for changes:
 
-    npm start
+    yarn start
+
+Built it:
+
+    yarn build
 
 ## License
 
