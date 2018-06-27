@@ -1,3 +1,7 @@
+# This repository has been moved to [gitlab.com/paul-nechifor/horoscop](http://gitlab.com/paul-nechifor/horoscop).
+
+Old readme:
+
 # Horoscop
 
 Plausible fake horoscope generator in Romanian. [See it live.][live]
